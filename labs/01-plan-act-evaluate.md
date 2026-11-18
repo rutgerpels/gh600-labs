@@ -6,6 +6,35 @@
 | **Exam skills** | Define inputs, outputs and success criteria (D1) · identify anti-patterns (D1) · enable autonomous branch/PR creation (D2) · traceability and accountability (D2) · use logs and artifacts to evaluate (D4) |
 | **You will** | Assign a well-specified issue to Copilot cloud agent, watch the plan → act → evaluate loop, review the PR with the contributor rubric, and trace every agent action back to a person and a session |
 
+## About this lab
+
+### What we'll discuss
+
+Module 1 frames an agent as a **contributor**, not a magic tool. It works in a loop: **plan** (understand the task, explore the repo), **act** (edit, run, commit), and **evaluate** (run tests and scans, self-correct), and then it hands its work to a human through the same PR process any teammate uses. The quality of the output is mostly decided *before* the agent starts: a task with clear inputs, outputs and success criteria gets a focused, verifiable PR, while a vague one invites scope creep.
+
+We'll also look at **accountability**. When an agent writes code, who is responsible? GitHub answers this with signed commits, a co-author trailer for the person who delegated the work, a session log, and rules that stop the requester from approving their own agent's PR.
+
+### What you'll learn
+
+- How to write an agent-ready issue (inputs, expected output, success criteria, boundaries) and why that's the first guardrail
+- How to recognize each phase of plan → act → evaluate in a real session log
+- Why workflows on agent PRs wait for *Approve and run workflows*
+- How to review an agent PR with the **contributor model** rubric (intent, scope, evidence, ownership, policy, fallback)
+- How to trace any agent change back to a human, an issue, and a session
+
+### Where this lands in the exam
+
+| Domain (weight) | Study guide objective | Skill bullet |
+| --- | --- | --- |
+| Prepare agent architecture and SDLC processes (15–20%) | Integrate agents into the SDLC | *Identify steps for agents to perform* · *Identify and mitigate common anti-patterns in agents* · *Define inputs, outputs, and success criteria for agents* |
+| Prepare agent architecture and SDLC processes (15–20%) | Configure observability and control for autonomous agents | *Configure agent to produce inspectable artifacts within standard development tooling* · *Configure human intervention for autonomous agents without slowing delivery* |
+| Implement tool use and environment interaction (20–25%) | Integrate agents within development environments | *Enable an agent to perform autonomous actions, including creating branches and pull requests* |
+| Implement tool use and environment interaction (20–25%) | Operate agents with safe execution paths and robust error handling | *Implement traceability and accountability for agent actions* |
+| Perform evaluation, error analysis, and tuning (15–20%) | Define success criteria and evaluation signals | *Specify expected outcomes and operational constraints for agent tasks* · *Generate evaluation signals by using automated scanning tools* |
+| Perform evaluation, error analysis, and tuning (15–20%) | Analyze agent failures and identify root causes | *Identify failures by using logs, plans, traces, outputs, and workflow artifacts* |
+
+📘 Source: [GH-600 study guide — Skills measured](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-600#skills-measured)
+
 ## Part A — Write a well-specified agent task
 
 An agent task needs explicit **inputs**, **outputs**, **success criteria**, and **boundaries**. A vague task is a known anti-pattern because it produces scope creep and unverifiable results.

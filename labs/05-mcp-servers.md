@@ -6,6 +6,42 @@
 | **Exam skills** | Configure MCP servers for agents (D2) · restrict tools to least privilege (D2) · manage MCP access with allowlists/registries (D2, D6) · supply secrets safely (D2) |
 | **You will** | Add the Microsoft Learn MCP server to the repository, restrict which of its tools the agent can call, create a custom agent that uses a single MCP tool, and verify the calls in the session log |
 
+## About this lab
+
+### What we'll discuss
+
+An agent can only act through its **tools**. The **Model Context Protocol (MCP)** is the open standard for plugging new tools into an agent, such as documentation search, ticketing systems, databases, or cloud APIs. That's powerful, and risky: every MCP tool expands what the agent can read and do, and Copilot cloud agent calls those tools **without asking for approval each time**.
+
+Module 3 unit 3 therefore treats MCP as a **least-privilege** problem at three levels:
+
+1. **Repository**: which servers are connected, and which of their tools are allowlisted.
+2. **Agent**: which of those tools a specific custom agent may use (`server/tool`).
+3. **Organization/enterprise**: which servers are allowed at all, through policies and an MCP **registry**.
+
+We'll connect the Microsoft Learn MCP server, narrow it to the tools we need, give one agent a single tool, and verify in the session log that the agent really used it.
+
+### What you'll learn
+
+- How MCP servers are configured for Copilot cloud agent (JSON `mcpServers`, `type`, `url`, `tools`)
+- The built-in `github` and `playwright` servers and their default limits
+- How repository allowlists and custom agent `tools` stack to give least privilege
+- How secrets reach MCP servers safely (`COPILOT_MCP_` agent secrets)
+- How org and enterprise admins govern MCP with policies, registries and allowlists
+- How to use session logs as evidence that tools were used correctly
+
+### Where this lands in the exam
+
+| Domain (weight) | Study guide objective | Skill bullet |
+| --- | --- | --- |
+| Implement tool use and environment interaction (20–25%) | Configure MCP servers | *Add an MCP server as a tool to an agent* · *Configure a GitHub remote MCP server* · *Configure the MCP registries* · *Configure MCP allow lists* |
+| Implement tool use and environment interaction (20–25%) | Select and configure agent tools | *Identify required tools* · *Configure agent tools* · *Configure agent tool permissions* |
+| Implement guardrails and accountability (10–15%) | Implement guardrails and human-in-the-loop workflows | *Scope permissions and execution contexts to enforce least-privilege access* |
+| Perform evaluation, error analysis, and tuning (15–20%) | Analyze agent failures and identify root causes | *Identify failures by using logs, plans, traces, outputs, and workflow artifacts* · *Classify root causes, including … tool misuse* |
+
+📘 Source: [GH-600 study guide — Skills measured](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-600#skills-measured)
+
+> Domain 2 is the **largest** exam domain (20–25%), and MCP has its own objective in it. Expect several scenario questions on allowlists and registries.
+
 ## Part A — What's there by default
 
 **Settings → Copilot → Cloud agent → MCP servers** (under *Code, planning, and automation*; the exact label may vary).

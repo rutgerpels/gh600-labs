@@ -6,6 +6,41 @@
 | **Exam skills** | Configure the agent's execution environment (D2) · restrict network access (D2, D6) · enforce tool-level guardrails (D6) · scope agents to branches and repositories (D2) · manage secrets (D2) |
 | **You will** | Pre-configure the agent's environment, test the firewall, block risky tool calls with a **hook** that runs *before* each tool call, and scope a task to a release branch |
 
+## About this lab
+
+### What we'll discuss
+
+Where an agent runs matters as much as what it's told. Copilot cloud agent runs in an **ephemeral GitHub Actions environment** with its own branch, token, network rules and secrets. Module 3 units 4–5 call this the **execution context**, and treat shaping it as one of the strongest guardrails you have, because it doesn't depend on the model following instructions.
+
+We'll work through the layers of that context, from "helpful" to "hard stop":
+
+- **Validation tools**: built-in scanning (CodeQL, secret scanning, Advisory DB, code review) that gives the agent evaluation signals while it works.
+- **Setup steps**: a deterministic, pre-built environment, so the agent doesn't improvise installs.
+- **Firewall**: an outbound network allowlist that limits where data can go.
+- **Hooks**: your own code that runs *before every tool call* and can **deny** it. This is a deterministic block that prompt injection can't talk its way past.
+- **Branch scope and secrets**: what the agent can target and what credentials it can see.
+
+### What you'll learn
+
+- How to evaluate and shape an agent's execution context
+- How `copilot-setup-steps.yml` works, and which keys are honored
+- What the firewall does and doesn't cover (a frequent exam trap)
+- How to write a `preToolUse` hook that blocks high-risk actions, and why that beats an instruction
+- How to scope an agent task to a release branch
+- Why Agents secrets are separate from Actions secrets
+
+### Where this lands in the exam
+
+| Domain (weight) | Study guide objective | Skill bullet |
+| --- | --- | --- |
+| Implement tool use and environment interaction (20–25%) | Integrate agents within development environments | *Evaluate the execution context for an agent* · *Configure an agent's scope to a specific repository* · *Configure an agent to use branch-based scope* · *Configure an agent to handle environment-specific constraints* |
+| Implement tool use and environment interaction (20–25%) | Select and configure agent tools | *Configure agent tool permissions* |
+| Implement guardrails and accountability (10–15%) | Implement guardrails and human-in-the-loop workflows | *Block actions that violate defined security, compliance, or Responsible AI policies* · *Scope permissions and execution contexts to enforce least-privilege access* · *Require explicit authorization or controlled paths for irreversible or compliance-sensitive changes* |
+| Perform evaluation, error analysis, and tuning (15–20%) | Define success criteria and evaluation signals | *Generate evaluation signals by using automated scanning tools* |
+| Perform evaluation, error analysis, and tuning (15–20%) | Analyze agent failures and identify root causes | *Classify root causes, including … context or environment issues* |
+
+📘 Source: [GH-600 study guide — Skills measured](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-600#skills-measured) · Docs linked from the study guide: [Build guardrails for cloud agent](https://docs.github.com/copilot/tutorials/cloud-agent/build-guardrails) and [Risks and mitigations](https://docs.github.com/en/copilot/concepts/agents/cloud-agent/risks-and-mitigations)
+
 ## Part A — Validation tools and workflow approval
 
 **Settings → Copilot → Cloud agent**

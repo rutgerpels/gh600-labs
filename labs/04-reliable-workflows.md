@@ -8,6 +8,37 @@
 
 No Copilot session is needed in this lab; it works on any plan.
 
+## About this lab
+
+### What we'll discuss
+
+Agents fail, often in ways a human wouldn't: flaky tool calls, partial results, confident but wrong output. Module 2 units 6–7 say a reliable agent workflow is designed for failure from the start. Each stage hands a **structured output** to the next, execution is **gated** on the previous result, **evidence** is kept, failures **retry within a limit** and then **escalate** to a human, and every release can be **rolled back**.
+
+We'll build these patterns in GitHub Actions, the same engine that runs Copilot cloud agent and Agentic Workflows. The pipeline is shaped like an agent: *plan* → *validate* → (*escalate* | *deploy*). We'll also apply **risk-based autonomy**: low-risk steps run on their own, while the critical step (production) waits for a human, without blocking the steps before it.
+
+### What you'll learn
+
+- How to pass structured data between stages (`$GITHUB_OUTPUT`, `needs`)
+- How to gate a stage on success, and how to trigger escalation on failure
+- How to persist evaluation evidence as artifacts, even when a job fails
+- Why retries must be **bounded**, and what happens after the limit
+- How environment required reviewers add a human checkpoint only where risk justifies it
+- How deploying an explicit SHA makes rollback a simple re-run
+- Per-job least-privilege `GITHUB_TOKEN` permissions
+
+### Where this lands in the exam
+
+| Domain (weight) | Study guide objective | Skill bullet |
+| --- | --- | --- |
+| Implement tool use and environment interaction (20–25%) | Operate agents with safe execution paths and robust error handling | *Implement error handling* · *Implement retries* · *Implement rollbacks* · *Implement escalation paths* · *Implement traceability and accountability for agent actions* |
+| Implement tool use and environment interaction (20–25%) | Integrate agents within development environments | *Configure an agent to be invoked in a CI workflow* · *Configure an agent to handle environment-specific constraints* |
+| Prepare agent architecture and SDLC processes (15–20%) | Configure observability and control for autonomous agents | *Plan and implement the degree of agent autonomy, including guardrails* · *Configure agent to produce inspectable artifacts within standard development tooling* · *Configure human intervention for autonomous agents without slowing delivery* |
+| Perform evaluation, error analysis, and tuning (15–20%) | Analyze agent failures and identify root causes | *Identify failures by using logs, plans, traces, outputs, and workflow artifacts* |
+| Implement guardrails and accountability (10–15%) | Define autonomy levels | *Classify agent actions by operational, security, and compliance risk to right-size human interventions* · *Assign autonomy levels to maximize delivery speed…* |
+| Implement guardrails and accountability (10–15%) | Implement guardrails and human-in-the-loop workflows | *Scope permissions and execution contexts to enforce least-privilege access* · *Require explicit authorization or controlled paths for irreversible or compliance-sensitive changes* |
+
+📘 Source: [GH-600 study guide — Skills measured](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-600#skills-measured)
+
 ## Part A — Create the `production` environment
 
 **Settings → Environments → New environment** → `production`

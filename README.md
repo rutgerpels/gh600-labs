@@ -15,6 +15,21 @@ A tiny, zero-dependency Node.js API (`node --test`) with deliberately risk-tiere
 | `src/auth/`, `infra/`, `.github/` | High — CODEOWNERS + stricter rules + hooks |
 | `production` environment | Critical — agent prepares, human approves |
 
+## Exam domains (from the study guide)
+
+The lab index uses D1–D6 as shorthand. Each lab's **About this lab** section quotes the exact skill bullets it practices.
+
+| | Domain | Weight | Covered in Part 1 labs |
+| --- | --- | --- | --- |
+| D1 | Prepare agent architecture and SDLC processes | 15–20% | ✅ Labs 01–04 |
+| D2 | Implement tool use and environment interaction | 20–25% | ✅ Labs 01, 03–07 |
+| D3 | Manage memory, state, and execution | 10–15% | Taste in Lab 03 (Part 2) |
+| D4 | Perform evaluation, error analysis, and tuning | 15–20% | ✅ Labs 01, 03–06 |
+| D5 | Orchestrate multi-agent coordination | 15–20% | Part 2 |
+| D6 | Implement guardrails and accountability | 10–15% | ✅ Labs 02, 04–07 |
+
+📘 [GH-600 study guide — Skills measured](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-600#skills-measured)
+
 ## Lab index
 
 | # | Lab | Learn module · units | Exam domain(s) | Time |

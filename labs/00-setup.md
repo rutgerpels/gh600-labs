@@ -2,6 +2,27 @@
 
 **Goal:** confirm that Copilot cloud agent can work in this repository before you start the real labs.
 
+## About this lab
+
+### What we'll discuss
+
+GH-600 is about running AI agents *inside* a real software delivery process, with GitHub as the **system of record and control plane**. Before an agent can do anything, three things need to be true: the agent is **enabled** for you (policy), it can **reach** the repository (scope), and the repository has a **baseline** (working CI) to measure agent changes against. This lab checks all three and gives you a tour of where agent controls live in the repository settings.
+
+### What you'll learn
+
+- Who decides whether Copilot cloud agent is available to you: enterprise/org policy first, then the repository
+- Where the repository-level agent controls live (*Settings → Copilot*), which you'll configure in later labs
+- Why a green CI baseline matters: it's your first **evaluation signal** for agent output
+
+### Where this lands in the exam
+
+| Domain (weight) | Study guide objective | Skill bullet |
+| --- | --- | --- |
+| Implement tool use and environment interaction (20–25%) | Integrate agents within development environments | *Evaluate the execution context for an agent* · *Configure an agent's scope to a specific repository* |
+| Perform evaluation, error analysis, and tuning (15–20%) | Define success criteria and evaluation signals for agent tasks | *Identify qualitative and quantitative evaluation signals to evaluate agents* |
+
+📘 Source: [GH-600 study guide — Skills measured](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-600#skills-measured)
+
 ## 1. Enable Actions and check the baseline
 
 1. Open the repository's **Actions** tab. If prompted, click **I understand my workflows, go ahead and enable them**.

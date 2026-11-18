@@ -6,6 +6,42 @@
 | **Exam skills** | Separate planning from execution (D1) · configure agent behavior with instructions and custom agents (D2) · least-privilege tool access (D2) · tune based on evaluation results (D4) |
 | **You will** | Fix Lab 02's Plan Gate failure with repository instructions, create a read-mostly **planner** agent and an **implementer** agent, and enforce the plan/implementation split in CI |
 
+## About this lab
+
+### What we'll discuss
+
+Module 2 units 3–4 separate an agent's work into **planning** (decide what to do), **reasoning** (justify it), and **execution** (change things). When one agent does all three in a single pass, a bad plan is only discovered after the code exists. Splitting them gives a cheap human checkpoint *before* any code is written.
+
+We'll put that into practice with GitHub's two customization mechanisms:
+
+- **Custom instructions** shape *how* every agent session behaves in this repo (PR format, scope rules, when to stop and escalate).
+- **Custom agents** create specialized roles with their **own tool allowlists**: a planner that can't run code, and an implementer that can.
+
+Then we close the loop with **enforcement**: a CI check proves the planner stayed in its lane. Along the way we run the Domain 4 cycle of **evaluate → find root cause → tune**: Lab 02's Plan Gate failure becomes an instruction fix rather than a manual correction.
+
+### What you'll learn
+
+- When to use repository instructions, path-specific instructions, and custom agents
+- How the `tools` list implements least privilege for an agent role
+- How to run a plan-first workflow: plan PR → human review → implementation PR
+- Why a prompt saying "only edit `plans/`" isn't a control, and how to make it one
+- How to tune agent behavior from evaluation results instead of patching outputs by hand
+
+### Where this lands in the exam
+
+| Domain (weight) | Study guide objective | Skill bullet |
+| --- | --- | --- |
+| Prepare agent architecture and SDLC processes (15–20%) | Define boundaries between planning, reasoning, and action | *Configure agent planning to be distinct from agent execution* · *Configure an agent to output a structured plan* · *Validate agent plans* · *Prevent agent action until the agent checked and approved* |
+| Implement tool use and environment interaction (20–25%) | Select and configure agent tools | *Identify required tools* · *Configure agent tools* · *Configure agent tool permissions* |
+| Implement tool use and environment interaction (20–25%) | Operate agents with safe execution paths and robust error handling | *Implement escalation paths* |
+| Perform evaluation, error analysis, and tuning (15–20%) | Analyze agent failures and identify root causes | *Classify root causes, including reasoning errors, tool misuse, and context or environment issues* |
+| Perform evaluation, error analysis, and tuning (15–20%) | Tune agent behavior based on evaluation results | *Revise instructions, workflows, or constraints* · *Refine tool usage and tool access* |
+| Manage memory, state, and execution (10–15%) | Persist agent state and manage context drift | *Capture task progress and decisions as durable artifacts* (the plan file) · *Resume agent work without repeating steps or diverging from prior decisions* |
+
+📘 Source: [GH-600 study guide — Skills measured](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-600#skills-measured)
+
+> The memory/state row is a Part 2 domain; this lab gives you a first taste because the approved plan file is exactly the kind of durable artifact that domain is about.
+
 ## Part A — Repository custom instructions (the *tune* step)
 
 Lab 02's agent PR probably failed **Plan Gate**. Evaluate → tune: instead of fixing each PR by hand, change the agent's standing instructions.

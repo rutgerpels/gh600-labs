@@ -8,6 +8,38 @@
 
 > **Why it matters:** instructions *ask* an agent to behave. Rulesets, required checks, and CODEOWNERS *enforce* behavior. Exam scenarios often hinge on that distinction.
 
+## About this lab
+
+### What we'll discuss
+
+Lab 01 showed that an agent behaves like a contributor. This lab makes the repository **treat** it like one. Module 2 unit 5 argues that the pull request is the natural control point for agent work: it's where intent (the plan), evidence (checks) and ownership (reviewers) come together. So we'll build that control point in layers:
+
+1. A **PR template** that defines what a "complete" change description looks like.
+2. A **Plan Gate** check that *verifies* the description instead of hoping for it.
+3. **CODEOWNERS** to route high-risk paths to the right reviewer.
+4. A **ruleset** that turns all of the above from suggestions into requirements.
+
+The central idea, and a recurring exam theme, is **guidance vs. enforcement**: an instruction asks an agent to do something; a required check or ruleset guarantees it. We'll also feel the cost of controls (a solo maintainer can't approve their own agent's PR) and discuss how to keep governance from slowing delivery.
+
+### What you'll learn
+
+- How to make a structured plan a *verifiable* part of every PR
+- How to write a workflow that safely reads untrusted PR text (script-injection mitigation)
+- The difference between CODEOWNERS *requesting* review and a ruleset *requiring* it
+- How rulesets, required checks and audited bypasses combine into a governance layer for humans and agents alike
+- Why an agent PR failing a check is a useful **evaluation signal** (fixed in Lab 03)
+
+### Where this lands in the exam
+
+| Domain (weight) | Study guide objective | Skill bullet |
+| --- | --- | --- |
+| Prepare agent architecture and SDLC processes (15–20%) | Define boundaries between planning, reasoning, and action | *Configure an agent to output a structured plan* · *Validate agent plans* · *Prevent agent action until the agent checked and approved* |
+| Prepare agent architecture and SDLC processes (15–20%) | Configure observability and control for autonomous agents | *Plan and implement the degree of agent autonomy, including guardrails* · *Configure human intervention for autonomous agents without slowing delivery* |
+| Implement guardrails and accountability (10–15%) | Implement guardrails and human-in-the-loop workflows | *Identify the subset of actions that require human judgment* · *Require explicit authorization or controlled paths for irreversible or compliance-sensitive changes* · *Preserve execution velocity by minimizing approvals that do not materially reduce risk* |
+| Implement guardrails and accountability (10–15%) | Define autonomy levels | *Classify agent actions by operational, security, and compliance risk to right-size human interventions* |
+
+📘 Source: [GH-600 study guide — Skills measured](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-600#skills-measured)
+
 ## Part A — PR template (the plan contract)
 
 1. **Add file → Create new file** → `.github/pull_request_template.md`:

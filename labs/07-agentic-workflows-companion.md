@@ -8,6 +8,32 @@
 
 > GitHub Agentic Workflows (`gh aw`) is evolving quickly. The syntax below is illustrative; follow the official exercise and the [gh-aw repository](https://github.com/github/gh-aw) for exact syntax.
 
+## About this lab
+
+### What we'll discuss
+
+Labs 01–06 used an agent that *you* start (by assigning an issue or writing a prompt). **GitHub Agentic Workflows** turn that around: the agent runs **inside a CI workflow**, triggered by repository events or a schedule, with no human starting it. That's a big jump in autonomy, so the security model is stricter by design. The agent runs **read-only**, holds **no secrets**, sits behind a **network allowlist**, and can only change things through validated **safe outputs** that separate jobs perform.
+
+This companion helps you see the official exercise through the exam's lens. Each design choice maps to a guardrail principle you've already practiced, now applied to unattended automation.
+
+### What you'll learn
+
+- How an agent is invoked from a CI workflow (Markdown intent, compiled `.lock.yml`)
+- Why separating "agent decides" from "job writes" (safe outputs) reduces prompt-injection risk
+- How least privilege, network restriction and threat detection apply to unattended agents
+- How this model compares to Copilot cloud agent's controls
+
+### Where this lands in the exam
+
+| Domain (weight) | Study guide objective | Skill bullet |
+| --- | --- | --- |
+| Implement tool use and environment interaction (20–25%) | Integrate agents within development environments | *Configure an agent to be invoked in a CI workflow* · *Configure an agent to handle environment-specific constraints* |
+| Implement tool use and environment interaction (20–25%) | Select and configure agent tools | *Configure agent tools* · *Configure agent tool permissions* |
+| Implement guardrails and accountability (10–15%) | Implement guardrails and human-in-the-loop workflows | *Block actions that violate defined security, compliance, or Responsible AI policies* · *Scope permissions and execution contexts to enforce least-privilege access* |
+| Implement guardrails and accountability (10–15%) | Define autonomy levels | *Assign autonomy levels to maximize delivery speed while remaining compliant…* |
+
+📘 Source: [GH-600 study guide — Skills measured](https://learn.microsoft.com/en-us/credentials/certifications/resources/study-guides/gh-600#skills-measured)
+
 ## While you do the exercise, find each concept
 
 | ✅ | Concept | Where you'll see it | Why the exam cares |
